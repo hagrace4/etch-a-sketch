@@ -1,0 +1,21 @@
+body {
+  background-color: black;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  grid-gap: 1px;
+}
+
+div {
+  background-color: white;
+  height: 20px;
+  width: 20px;
+
+}
+
+div:hover {
+  background-color: black;
+}
