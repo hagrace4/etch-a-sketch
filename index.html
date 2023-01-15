@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/style/styles.css">
   <title>Etch-a-Sketch</title>
 </head>
 
@@ -15,12 +15,18 @@
   <div id="container"></div>
 
   <script>
+
+
     let container = document.getElementById('container');
 
     let newDiv = document.createElement("div");
 
-    for (let i = 0; i < 16; i++) {
-      for (let j = 0; j < 16; j++) {
+
+    let columns = 16;
+    let rows = 16;
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < columns; j++) {
         let newDiv = document.createElement("div");
         container.appendChild(newDiv);
       }
@@ -36,6 +42,40 @@
         }, 3000);
       });
     });
+
+    // Prompt Button Functions
+    let sizeBtn = document.querySelector("#sizeBtn");
+    sizeBtn.addEventListener("click", function () {
+      let rows = prompt("How many Rows?");
+      let columns = prompt("How many Columns?");
+      // check if the user input is a number
+      if (!isNaN(rows) && !isNaN(columns)) {
+        // remove current grid
+        container.innerHTML = "";
+        // generate new grid
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < columns; j++) {
+            let newDiv = document.createElement("div");
+            container.appendChild(newDiv);
+          }
+        }
+        // reset event listeners
+        let divs = document.querySelectorAll("div");
+        divs.forEach(function (div) {
+          div.addEventListener("mouseover", function () {
+            div.style.backgroundColor = "black";
+            setTimeout(function () {
+              div.style.backgroundColor = "white";
+            }, 3000);
+          });
+        });
+      } else {
+        // the user input is not a number
+        alert("Please Enter a Valid Number!");
+      }
+
+    })
+
 
 
 
