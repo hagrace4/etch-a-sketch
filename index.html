@@ -19,13 +19,22 @@
     let newDiv = document.createElement("div");
 
     for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
-      let newDiv = document.createElement("div");
-      container.appendChild(newDiv);
+      for (let j = 0; j < 16; j++) {
+        let newDiv = document.createElement("div");
+        container.appendChild(newDiv);
+      }
     }
-  }
 
-
+    // Create trailing effect
+    let divs = document.querySelectorAll("div");
+    divs.forEach(function (div) {
+      div.addEventListener("mouseover", function () {
+        div.style.backgroundColor = "black";
+        setTimeout(function () {
+          div.style.backgroundColor = "white";
+        }, 3000);
+      });
+    });
 
 
 
