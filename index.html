@@ -46,12 +46,17 @@
     // Prompt Button Functions
     let sizeBtn = document.querySelector("#sizeBtn");
     sizeBtn.addEventListener("click", function () {
-      let rows = prompt("How many Rows?");
-      let columns = prompt("How many Columns?");
+      let gridSize = prompt("Enter the number of rows and columns (e.g. '24' for a 24x24 grid):");
+      // let [rows, columns] = gridSize.split(" "); 
+      let rows = gridSize;
+      let columns = gridSize;
       // check if the user input is a number
       if (!isNaN(rows) && !isNaN(columns)) {
         // remove current grid
         container.innerHTML = "";
+        //update css
+        let styles = document.styleSheets[0];
+        styles.insertRule(`#container{grid-template-columns: repeat(${columns}, 1fr);grid-template-rows: repeat(${rows}, 1fr);}`, styles.cssRules.length);
         // generate new grid
         for (let i = 0; i < rows; i++) {
           for (let j = 0; j < columns; j++) {
@@ -73,8 +78,7 @@
         // the user input is not a number
         alert("Please Enter a Valid Number!");
       }
-
-    })
+    });
 
 
 
