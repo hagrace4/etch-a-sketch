@@ -49,12 +49,18 @@
     let sizeBtn = document.querySelector("#sizeBtn");
     sizeBtn.addEventListener("click", function () {
       let gridSize = prompt("Enter the number of rows and columns (e.g. '24' for a 24x24 grid):");
+      while (gridSize > 100) {
+        gridSize = prompt("Please re-enter a number of 100 or less");
+      }
+      while (isNaN(gridSize)){
+        gridSize = prompt("Please enter a Valid Number");
+      }
       //Update the value of the CSS variable
       document.documentElement.style.setProperty("--gridSize", gridSize);
       let rows = gridSize;
       let columns = gridSize;
       // check if the user input is a number
-      if (!isNaN(rows) && !isNaN(columns)) {
+      if (!isNaN(gridSize)) {
         // remove current grid
         container.innerHTML = "";
         for (let i = 0; i < rows; i++) {
